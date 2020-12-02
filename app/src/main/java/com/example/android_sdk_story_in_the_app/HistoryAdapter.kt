@@ -17,7 +17,7 @@ class HistoryAdapter(numberItems : Int) : RecyclerView.Adapter<HistoryAdapter.Hi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         var context : Context = parent.context
-        var layoutIdListItem = R.layout.screen
+        var layoutIdListItem = R.layout.history_item
 
         var inflater : LayoutInflater = LayoutInflater.from(context)
         var view : View = inflater.inflate(layoutIdListItem, parent, false)
