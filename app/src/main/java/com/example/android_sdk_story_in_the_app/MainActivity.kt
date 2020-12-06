@@ -2,6 +2,7 @@ package com.example.android_sdk_story_in_the_app
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
@@ -24,5 +25,6 @@ class MainActivity : AppCompatActivity() {
         historyAdapter = HistoryAdapter(6)
 
         historyList.adapter = historyAdapter
+
     }
 }
