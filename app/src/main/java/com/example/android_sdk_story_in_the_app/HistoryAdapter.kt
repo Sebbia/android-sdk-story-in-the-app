@@ -12,10 +12,10 @@ import android.widget.ImageButton
 
 class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    private var count_screen : Int = 0
+    private var count_history : Int = 0
 
     init {
-        count_screen = numberItems
+        count_history = numberItems
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -39,7 +39,7 @@ class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.His
     }
 
     override fun getItemCount(): Int {
-        return count_screen
+        return count_history
     }
 
 

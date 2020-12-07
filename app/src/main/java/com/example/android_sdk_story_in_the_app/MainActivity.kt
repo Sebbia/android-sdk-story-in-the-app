@@ -2,8 +2,6 @@ package com.example.android_sdk_story_in_the_app
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -13,18 +11,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        historyList = findViewById(R.id.recycler_histories)
+        var history : HistorySDK = HistorySDK()
 
-        var historyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        historyList.layoutManager = historyLayoutManager
+        history.initHistory(this)
 
-        historyList.setHasFixedSize(true)
 
-        historyAdapter = HistoryAdapter(6)
+        /*        setContentView(R.layout.activity_main)
 
-        historyList.adapter = historyAdapter
+               historyList = findViewById(R.id.recycler_histories)
+
+               var historyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+               historyList.layoutManager = historyLayoutManager
+
+               historyList.setHasFixedSize(true)
+
+               historyAdapter = HistoryAdapter(6)
+
+               historyList.adapter = historyAdapter*/
 
     }
 }

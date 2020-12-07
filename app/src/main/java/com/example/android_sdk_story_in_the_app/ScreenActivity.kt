@@ -11,6 +11,9 @@ class ScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        var screen : HistorySDK = HistorySDK()
+
         setContentView(R.layout.screen)
 
         screenList = findViewById(R.id.screen)
@@ -25,8 +28,5 @@ class ScreenActivity : AppCompatActivity() {
         adapter.addFragment(ScreenAdapter.ScreenFragment(), t)
 
         screenList.adapter = adapter
-
-
-
     }
 }
