@@ -1,21 +1,23 @@
 package com.example.android_sdk_story_in_the_app
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
+import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import java.net.URL
+
 
 class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    private var count_history : Int = 0
+    lateinit var historyHolderList : MutableList<HistoryViewHolder>
+    private var historySize : Int = 0
 
     init {
-        count_history = numberItems
+        historySize = numberItems
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -31,6 +33,8 @@ class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.His
 
         viewHolder.listimage.setImageResource(R.drawable.fake_history_background)
 
+        historyHolderList.add(viewHolder)
+
         return viewHolder;
     }
 
@@ -39,13 +43,20 @@ class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.His
     }
 
     override fun getItemCount(): Int {
-        return count_history
+        return historySize
     }
+
+    fun addHistory()
+    {
+        historySize++
+    }
+
 
 
     class HistoryViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView)
     {
-        lateinit var listimage: ImageButton;
+        var listimage: ImageButton;
+        lateinit var urlImageList : URL
 
         init {
             super.itemView
@@ -63,8 +74,19 @@ class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.His
 
         fun bind(ID: Int)
         {
+            //fake
             listimage.setImageResource(R.drawable.fake_history_background)
+            //real
+            var icon = BitmapFactory.decodeStream(urlImageList.openConnection().getInputStream());
+            listimage.setImageBitmap(icon)
+            //saveDate()
         }
+
+/*        fun saveDate()
+        {
+            answerStrings.clear()
+            for (et in answerAdapter.answers) answerStrings.add(et.text.toString())
+        }*/
 
     }
 }

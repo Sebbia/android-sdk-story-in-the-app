@@ -17,6 +17,18 @@ class MainActivity : AppCompatActivity() {
         history.initHistory(this)
 
 
+        lateinit var listHistory: MutableList<HistorySDK.History>
+
+        var historyItem: HistorySDK.History = HistorySDK.History()
+
+        historyItem.id = 1
+
+        historyItem.skin = "fake_history_background"
+
+        listHistory.add(historyItem)
+
+
+
         /*        setContentView(R.layout.activity_main)
 
                historyList = findViewById(R.id.recycler_histories)
