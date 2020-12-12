@@ -67,8 +67,7 @@ class ScreenAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
             }
 
             private fun finish() {
-                this.finish()
-
+                finish()
             }
         }
 

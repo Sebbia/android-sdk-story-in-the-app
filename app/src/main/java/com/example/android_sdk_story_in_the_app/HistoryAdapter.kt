@@ -2,7 +2,6 @@ package com.example.android_sdk_story_in_the_app
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,82 +10,50 @@ import android.widget.ImageButton
 import java.net.URL
 
 
-class HistoryAdapter(numberItems: Int) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+    class HistoryAdapter(values: MutableList<HistorySDK.History>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
-    lateinit var historyHolderList : MutableList<HistoryViewHolder>
-    private var historySize : Int = 0
+    var values: MutableList<HistorySDK.History> = values
 
-    init {
-        historySize = numberItems
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        var context : Context = parent.context
-        var layoutIdListItem = R.layout.history_item
 
-        var inflater : LayoutInflater = LayoutInflater.from(context)
-        var view : View = inflater.inflate(layoutIdListItem, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
 
-        var viewHolder : HistoryViewHolder = HistoryViewHolder(view, context)
-
-        //Добавление обложки истории fake
-
-        viewHolder.listimage.setImageResource(R.drawable.fake_history_background)
-
-        historyHolderList.add(viewHolder)
-
-        return viewHolder;
+        return HistoryViewHolder(itemView,parent.context);
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(position)
+        holder.listimage.setImageResource(R.drawable.fake_history_background)
+
+        //holder.urlString = values[position].skin
+
+        //real
+        //var icon = BitmapFactory.decodeStream(urlImageList.openConnection().getInputStream());
+        //listimage.setImageBitmap(icon)
+
     }
 
     override fun getItemCount(): Int {
-        return historySize
-    }
-
-    fun addHistory()
-    {
-        historySize++
+        return values.size
     }
 
 
 
-    class HistoryViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView)
+    class HistoryViewHolder(itemView: View,context: Context) : RecyclerView.ViewHolder(itemView)
     {
         var listimage: ImageButton;
-        lateinit var urlImageList : URL
+        lateinit var urlImage : URL
 
         init {
             super.itemView
-
             listimage = itemView.findViewById(R.id.history_item)
 
             listimage.setOnClickListener {
                 val intent = Intent(context, ScreenActivity::class.java)
                 intent.putExtra("position", "Kotlin")
                 context.startActivity(intent)
+
             }
         }
-
-        //Обновление ViewHolder (ID С сервера) fake
-
-        fun bind(ID: Int)
-        {
-            //fake
-            listimage.setImageResource(R.drawable.fake_history_background)
-            //real
-            var icon = BitmapFactory.decodeStream(urlImageList.openConnection().getInputStream());
-            listimage.setImageBitmap(icon)
-            //saveDate()
-        }
-
-/*        fun saveDate()
-        {
-            answerStrings.clear()
-            for (et in answerAdapter.answers) answerStrings.add(et.text.toString())
-        }*/
-
     }
 }

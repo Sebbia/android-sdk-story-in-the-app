@@ -1,12 +1,17 @@
 package com.example.android_sdk_story_in_the_app
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var historyList : RecyclerView;
+
     lateinit var historyAdapter: HistoryAdapter;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,30 +22,22 @@ class MainActivity : AppCompatActivity() {
         history.initHistory(this)
 
 
-        lateinit var listHistory: MutableList<HistorySDK.History>
-
-        var historyItem: HistorySDK.History = HistorySDK.History()
-
-        historyItem.id = 1
-
-        historyItem.skin = "fake_history_background"
-
-        listHistory.add(historyItem)
 
 
 
-        /*        setContentView(R.layout.activity_main)
 
-               historyList = findViewById(R.id.recycler_histories)
+/*        setContentView(R.layout.activity_main)
 
-               var historyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-               historyList.layoutManager = historyLayoutManager
+        historyList = findViewById(R.id.recycler_histories)
 
-               historyList.setHasFixedSize(true)
+        var historyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        historyList.layoutManager = historyLayoutManager
 
-               historyAdapter = HistoryAdapter(6)
+        historyList.setHasFixedSize(true)
 
-               historyList.adapter = historyAdapter*/
+        historyAdapter = HistoryAdapter(6)
+
+        historyList.adapter = historyAdapter*/
 
     }
 }
