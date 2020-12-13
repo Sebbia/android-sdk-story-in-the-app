@@ -14,7 +14,7 @@ class HistorySDK() {
 
     }
 
-    //Инициализация адаптера историй
+    //Инициализация адаптера историй(MainActivity можно заменить на другое своё)
 
     fun initHistory(view: MainActivity) {
         view.setContentView(R.layout.activity_main)
@@ -28,15 +28,21 @@ class HistorySDK() {
         historyList.adapter = HistoryAdapter(getHistory())
     }
 
+
     //Получение экранов истории
 
-    private fun getScreen(): MutableList<HistorySDK.Screen> {
+    fun getScreen(tokenHistory: Int): MutableList<Screen> {
 
-        var screenList : MutableList<HistorySDK.Screen> = arrayListOf()
+        var screenList : MutableList<Screen> = arrayListOf()
 
-        screenList.add(HistorySDK.Screen(1,1,"R.drawable.fake_history_background",5,"10.10.2020","10.12.2020","Cat","More Cats","nul"))
-        screenList.add(HistorySDK.Screen(2,2,"R.drawable.fake_history_background",5,"10.10.2020","10.12.2020","Dog","More Dogs","nul"))
-
+        for(screen in screenList)
+        {
+        if(screen.tokenHistory == tokenHistory) {
+            screenList.add(screen)
+        }
+        }
+        screenList.add(Screen(1, 1,1, "R.drawable.fake_history_background", 5, "10.10.2020", "10.12.2020", "Cat", "More Cats", "nul"))
+        screenList.add(Screen(2, 1,2, "R.drawable.fake_history_background", 5, "10.10.2020", "10.12.2020", "Dog", "More Dogs", "nul"))
         return screenList
     }
 
@@ -47,8 +53,12 @@ class HistorySDK() {
 
         var historyList: MutableList<HistorySDK.History> = arrayListOf()
 
-        historyList.add(HistorySDK.History(0,0,"R.drawable.fake_history_background",getScreen()))
-        historyList.add(HistorySDK.History(1,1,"R.drawable.fake_history_background",getScreen()))
+        for(history in historyList)
+        {
+            historyList.add(history)
+        }
+        historyList.add(HistorySDK.History(0,0,"R.drawable.fake_history_background",getScreen(0)))
+        historyList.add(HistorySDK.History(1,1,"R.drawable.fake_history_background",getScreen(1)))
 
         return historyList
     }
@@ -86,19 +96,20 @@ class HistorySDK() {
         return history
     }*/
 
-//    fun queryScreen(token: Int): Screen {
-//        var screen: Screen = Screen()
-//        /*        screen.token
-//        screen.id
-//        screen.skin
-//        screen.time
-//        screen.DateStart
-//        screen.DateEnd
-//        screen.title
-//        screen.subtitle
-//        screen.url*/
-//        return screen
-//    }
+/*    fun queryScreen(token: Int): Screen {
+        lateinit var screen: Screen
+        screen.token
+        screen.tokenHistory
+        screen.id
+        screen.skin
+        screen.time
+        screen.DateStart
+        screen.DateEnd
+        screen.title
+        screen.subtitle
+        screen.url
+        return screen
+    }*/
 
     fun query() {
 
@@ -124,8 +135,9 @@ class HistorySDK() {
     }
 
     class Screen {
-        constructor(token: Int, id: Int, skin: String, time: Int, DateStart: String, DateEnd: String, title: String, subtitle: String, url: String) {
+        constructor(token: Int,tokenHistory: Int, id: Int, skin: String, time: Int, DateStart: String, DateEnd: String, title: String, subtitle: String, url: String) {
             this.token = token
+            this.tokenHistory = tokenHistory
             this.id = id
             this.skin = skin
             this.time = time
@@ -137,6 +149,8 @@ class HistorySDK() {
         }
 
         var token: Int = 0
+
+        var tokenHistory : Int = 0
 
         var id: Int = 0
 

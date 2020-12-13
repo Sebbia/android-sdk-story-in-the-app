@@ -2,15 +2,17 @@ package com.example.android_sdk_story_in_the_app
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import java.net.URL
+import kotlin.properties.Delegates
 
 
-    class HistoryAdapter(values: MutableList<HistorySDK.History>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(values: MutableList<HistorySDK.History>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     var values: MutableList<HistorySDK.History> = values
 
@@ -23,8 +25,8 @@ import java.net.URL
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.listimage.setImageResource(R.drawable.fake_history_background)
-
+        holder.skin.setImageResource(R.drawable.fake_history_background)
+        holder.token = values[position].token
         //holder.urlString = values[position].skin
 
         //real
@@ -41,16 +43,18 @@ import java.net.URL
 
     class HistoryViewHolder(itemView: View,context: Context) : RecyclerView.ViewHolder(itemView)
     {
-        var listimage: ImageButton;
+        var token by Delegates.notNull<Int>()
+        var skin: ImageButton;
         lateinit var urlImage : URL
 
         init {
             super.itemView
-            listimage = itemView.findViewById(R.id.history_item)
+            skin = itemView.findViewById(R.id.history_item)
 
-            listimage.setOnClickListener {
+
+            skin.setOnClickListener {
                 val intent = Intent(context, ScreenActivity::class.java)
-                intent.putExtra("position", "Kotlin")
+                intent.putExtra("token", token)
                 context.startActivity(intent)
 
             }
